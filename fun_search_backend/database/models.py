@@ -11,12 +11,13 @@ db = SQLAlchemy(app)
 class Member(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100))
+    groupname = db.Column(db.String(50))
+    teamname = db.Column(db.String(50))
     pinyin = db.Column(db.String(20))
     abbr = db.Column(db.String(10))
     nickname = db.Column(db.Text)
     height = db.Column(db.Integer)
     catchphrase = db.Column(db.Text)
-    catchphrase_his = db.Column(db.Text)
     hometown = db.Column(db.String(100))
     birth = db.Column(db.String(100))
     age = db.Column(db.Integer)
@@ -27,14 +28,15 @@ class Member(db.Model):
     experience = db.Column(db.Text)
     __tablename__ = "Member_info"
 
-    def __init__(self, name, pinyin, abbr, nickname, height, catchphrase, catchphrase_his, hometown, birth, age, grade, joinday, graduateday, status, experience):
+    def __init__(self, name, groupname, teamname, pinyin, abbr, nickname, height, catchphrase, hometown, birth, age, grade, joinday, graduateday, status, experience):
         self.name = name
+        self.groupname = groupname
+        self.teamname = teamname
         self.pinyin = pinyin
         self.abbr = abbr
         self.nickname = nickname
         self.height = height
         self.catchphrase = catchphrase
-        self.catchphrase_his = catchphrase_his
         self.hometown = hometown
         self.birth = birth
         self.age = age
