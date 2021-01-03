@@ -1,34 +1,32 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-import config
-
-app = Flask(__name__)
-app.config.from_object(config)
-
-db = SQLAlchemy(app)
+from sqlalchemy import Column, Integer, String, Text
+from database.database import Base
 
 
-class Member(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(100))
-    groupname = db.Column(db.String(50))
-    teamname = db.Column(db.String(50))
-    pinyin = db.Column(db.String(20))
-    abbr = db.Column(db.String(10))
-    nickname = db.Column(db.Text)
-    height = db.Column(db.Integer)
-    catchphrase = db.Column(db.Text)
-    hometown = db.Column(db.String(100))
-    birth = db.Column(db.String(100))
-    age = db.Column(db.Integer)
-    grade = db.Column(db.String(50))  # pname
-    joinday = db.Column(db.String(50))
-    graduateday = db.Column(db.String(50))
-    status = db.Column(db.Integer)
-    experience = db.Column(db.Text)
+class Member(Base):
     __tablename__ = "Member_info"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(100))
+    groupname = Column(String(50))
+    teamname = Column(String(50))
+    pinyin = Column(String(20))
+    abbr = Column(String(10))
+    nickname = Column(Text)
+    height = Column(Integer)
+    catchphrase = Column(Text)
+    hometown = Column(String(100))
+    birth = Column(String(100))
+    age = Column(Integer)
+    grade = Column(String(50))  # pname
+    joinday = Column(String(50))
+    graduateday = Column(String(50))
+    status = Column(Integer)
+    experience = Column(Text)
+    blood_type = Column(String(50))
+    ranking = Column(Integer)
+    pocket_id = Column(String(100))
 
-    def __init__(self, name, groupname, teamname, pinyin, abbr, nickname, height, catchphrase, hometown, birth, age, grade, joinday, graduateday, status, experience):
+    def __init__(self, name, groupname, teamname, pinyin, abbr, nickname, height, catchphrase, hometown, birth, age,
+                 grade, joinday, graduateday, status, experience, blood_type, ranking, pocket_id):
         self.name = name
         self.groupname = groupname
         self.teamname = teamname
@@ -45,10 +43,9 @@ class Member(db.Model):
         self.graduateday = graduateday
         self.status = status
         self.experience = experience
+        self.blood_type = blood_type
+        self.ranking = ranking
+        self.pocket_id = pocket_id
 
     def __repr__(self):
         return 'name: %r' % self.name
-
-
-if __name__ == "__main__":
-    db.create_all()
