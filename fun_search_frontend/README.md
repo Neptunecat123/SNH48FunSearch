@@ -1,4 +1,4 @@
-# fun_search_frontend
+# front_end
 
 ## Project setup
 ```
