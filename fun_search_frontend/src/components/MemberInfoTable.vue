@@ -1,6 +1,7 @@
 <template>
+  <div>
   <el-table
-    :data="tableData"
+    :data=info.data
     border
     style="width: 100%">
     <el-table-column
@@ -53,30 +54,22 @@
       label="CatchPhrase">
     </el-table-column>
   </el-table>
+  </div>
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        info: null,
       }
-    }
+    },
+    mounted () {
+    axios
+      .get('http://127.0.0.1:5000/membertable')
+      .then(response => (this.info = response))
+  }
   }
 </script>
