@@ -1,20 +1,25 @@
 from database.models import Member
 from flask import Blueprint
+from flask import request
 import json
 
 membertable = Blueprint('get_member_table_info', __name__)
 
 
-def get_all_member_info():
+def get_all_member_info(page, per_page):
     all_member = Member.query.all()
-    return all_member
+    start = page - 1
+    end = start * per_page + per_page
+    return all_member[start: end]
 
 
 @membertable.route('', methods=["GET"])
 def get_member_table_info():
+    page = request.args.get("page", 1, type=int)
+    per_page = 15
     ret_list = []
-    all_member = get_all_member_info()
-    for item in all_member:
+    members = get_all_member_info(page, per_page)
+    for item in members:
         item_dict = {}
         item_dict["gname"] = item.groupname
         item_dict["name"] = item.name

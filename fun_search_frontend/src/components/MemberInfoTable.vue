@@ -1,5 +1,6 @@
 <template>
   <div>
+  <div>
   <el-table
     :data=info.data
     border
@@ -55,6 +56,14 @@
     </el-table-column>
   </el-table>
   </div>
+  <div>
+  <el-pagination
+  background
+  layout="prev, pager, next"
+  :total="1000">
+</el-pagination>
+  </div>
+  </div>
 </template>
 
 <script>
@@ -64,11 +73,14 @@
     data() {
       return {
         info: null,
+        page: 1,
       }
     },
     mounted () {
     axios
-      .get('http://127.0.0.1:5000/membertable')
+      .get('http://127.0.0.1:5000/membertable', {
+        params: this.page
+      })
       .then(response => (this.info = response))
   }
   }
