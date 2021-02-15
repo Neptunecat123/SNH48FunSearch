@@ -2,7 +2,7 @@
   <div>
   <div>
   <el-table
-    :data=info.data
+    :data=info
     border
     style="width: 100%">
     <el-table-column
@@ -60,7 +60,9 @@
   <el-pagination
   background
   layout="prev, pager, next"
-  :total="1000">
+  :current-page.sync="currentPage"
+  :total="totalPage"
+  @current-change="handleCurrentChange">
 </el-pagination>
   </div>
   </div>
@@ -72,16 +74,29 @@
   export default {
     data() {
       return {
-        info: null,
-        page: 1,
+        info: [],
+        currentPage: 1,
+        totalPage: 0,
+        loaded: false
+      }
+    },
+    methods: {
+      getData(currentPage){
+        this.info = []
+        axios.get('http://127.0.0.1:5000/membertable', {
+            params: {
+              page: currentPage,
+            }
+          })
+          .then(response => (console.log(response.data.total_page), this.info = response.data.data, this.totalPage = response.data.total_page, this.loaded = true))
+      },
+      handleCurrentChange(val) {
+        this.currentPage = val
+        this.getData(this.currentPage)
       }
     },
     mounted () {
-    axios
-      .get('http://127.0.0.1:5000/membertable', {
-        params: this.page
-      })
-      .then(response => (this.info = response))
-  }
+      this.getData(1)
+    },
   }
 </script>
