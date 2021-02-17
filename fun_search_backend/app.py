@@ -2,7 +2,7 @@ from flask import Flask
 from database.database import init_db
 import config
 from tools.excel_to_database import get_datas, import_to_database
-from api.to_frontend import membertable
+from api.to_frontend import membertable, electiontable
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -13,6 +13,7 @@ CORS(app, resources=r'/*')
 # init_db()
 
 app.register_blueprint(membertable, url_prefix="/membertable")
+app.register_blueprint(electiontable, url_prefix="/electiontable")
 
 
 if __name__ == "__main__":

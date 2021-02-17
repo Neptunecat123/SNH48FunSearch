@@ -2,6 +2,20 @@ from sqlalchemy import Column, Integer, String, Text
 from database.database import Base
 
 
+class Election(Base):
+    __tablename__ = "election_info"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    date = Column(String(50))
+    member = Column(String(50))
+    rank = Column(Integer)
+    votes = Column(Integer)
+    gname = Column(String(10))
+    tname = Column(String(10))
+
+    def __repr__(self):
+        return 'name: %r' % self.member
+
+
 class Member(Base):
     __tablename__ = "Member_info"
     id = Column(Integer, primary_key=True, autoincrement=True)
