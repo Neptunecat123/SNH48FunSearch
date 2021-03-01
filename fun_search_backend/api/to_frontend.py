@@ -1,10 +1,11 @@
-from database.models import Member, Election
+from database.models import Member, Election, Best50
 from flask import Blueprint
 from flask import request
 import json
 
 membertable = Blueprint('get_member_table_info', __name__)
 electiontable = Blueprint('get_election_info', __name__)
+b50table = Blueprint('get_b50_info', __name__)
 
 
 @electiontable.route('', methods=["GET"])
@@ -56,3 +57,19 @@ def get_member_table_info():
     ret_dict["data"] = ret_list
     ret_dict["total_page"] = int(total_page)
     return json.dumps(ret_dict, ensure_ascii=False)
+
+
+@b50table.route('', methods=["GET"])
+def get_b50_info():
+    time = request.args.get("time", 7, type=int)
+    b50_datas = Best50.query.filter(Best50.time == time).all()
+    ret_list = []
+    for item in b50_datas:
+        item_dict = {}
+        item_dict["rank"] = item.rank
+        item_dict["unit"] = item.unit
+        item_dict["unit_from"] = item.unit_from
+        item_dict["number"] = item.number
+        item_dict["members"] = " / ".join(item.members.split("+"))
+        ret_list.append(item_dict)
+    return json.dumps(ret_list, ensure_ascii=False)

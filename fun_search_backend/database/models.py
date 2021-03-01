@@ -2,6 +2,33 @@ from sqlalchemy import Column, Integer, String, Text
 from database.database import Base
 
 
+class Best50(Base):
+    __tablename__ = "b50_info"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    group = Column(String(50))
+    rank = Column(Integer)
+    unit = Column(String(500))
+    unit_from = Column(String(500))
+    number = Column(Integer)
+    members = Column(Text)
+    date = Column(String(50))
+    time = Column(Integer)
+    # Best50(group, rank, unit, unit_from, number, members, date)
+    def __init__(self, group, rank, unit, unit_from, number, members, date, time):
+        self.group = group
+        self.rank = rank
+        self.unit = unit
+        self.unit_from = unit_from
+        self.number = number
+        self.members = members
+        self.date = date
+        self.time = time
+
+    def __repr__(self):
+        return 'unit: %r; date: %r' % (self.unit, self.date)
+
+
+
 class Election(Base):
     __tablename__ = "election_info"
     id = Column(Integer, primary_key=True, autoincrement=True)

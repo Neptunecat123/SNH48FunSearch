@@ -1,4 +1,4 @@
-from database.models import Member
+from database.models import Member, Best50
 from database.database import db_session
 
 
@@ -25,4 +25,18 @@ def create_member(data):
     memberinfo = Member(name, groupname, teamname, pinyin, abbr, nickname, height, catchphrase, hometown, birth, age,
                         grade, joinday, graduateday, status, experience, blood_type, ranking, pocket_id)
     db_session.add(memberinfo)
+    db_session.commit()
+
+
+def create_b50(data):
+    group = data.get("group", "")
+    rank = data.get("rank")
+    unit = data.get("unit")
+    unit_from = data.get("unit_from")
+    number = data.get("number")
+    members = data.get("members")
+    date = data.get("date")
+    time = data.get("time")
+    best50info = Best50(group, rank, unit, unit_from, number, members, date, time)
+    db_session.add(best50info)
     db_session.commit()
