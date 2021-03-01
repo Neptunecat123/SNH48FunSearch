@@ -26,13 +26,13 @@
       prop="unit"
       column-key="unit"
       label="曲目"
-      width="150">
+      width="200">
     </el-table-column>
     <el-table-column
       prop="unit_from"
       column-key="unit_from"
       label="来源"
-      width="150">
+      width="200">
     </el-table-column>
     <el-table-column
       prop="number"
