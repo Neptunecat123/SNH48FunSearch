@@ -3,16 +3,22 @@ from database.database import Base
 
 
 class Best50(Base):
-    __tablename__ = "b50_info"
+    __tablename__ = "best50"
     id = Column(Integer, primary_key=True, autoincrement=True)
     group = Column(String(50))
     rank = Column(Integer)
     unit = Column(String(500))
     unit_from = Column(String(500))
     number = Column(Integer)
-    members = Column(Text)
-    date = Column(String(50))
-    time = Column(Integer)
+    mem_1 = Column(String(20))
+    mem_2 = Column(String(20))
+    mem_3 = Column(String(20))
+    mem_4 = Column(String(20))
+    mem_5 = Column(String(20))
+    mem_6 = Column(String(20))
+    mem_7 = Column(String(20))
+    mem_8 = Column(String(20))
+    date = Column(String(20))
     # Best50(group, rank, unit, unit_from, number, members, date)
     def __init__(self, group, rank, unit, unit_from, number, members, date, time):
         self.group = group
@@ -20,9 +26,9 @@ class Best50(Base):
         self.unit = unit
         self.unit_from = unit_from
         self.number = number
-        self.members = members
         self.date = date
-        self.time = time
+        self.mem_1
+
 
     def __repr__(self):
         return 'unit: %r; date: %r' % (self.unit, self.date)
@@ -30,7 +36,7 @@ class Best50(Base):
 
 
 class Election(Base):
-    __tablename__ = "election_info"
+    __tablename__ = "election"
     id = Column(Integer, primary_key=True, autoincrement=True)
     date = Column(String(50))
     member = Column(String(50))
@@ -44,7 +50,7 @@ class Election(Base):
 
 
 class Member(Base):
-    __tablename__ = "Member_info"
+    __tablename__ = "member"
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100))
     groupname = Column(String(50))

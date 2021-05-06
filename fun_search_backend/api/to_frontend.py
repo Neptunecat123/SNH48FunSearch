@@ -70,6 +70,11 @@ def get_b50_info():
         item_dict["unit"] = item.unit
         item_dict["unit_from"] = item.unit_from
         item_dict["number"] = item.number
-        item_dict["members"] = " / ".join(item.members.split("+"))
+        member_lst = list()
+        for i in range(1, 9):
+            num = "No{}".format(i)
+            if item.num:
+                member_lst.append(item.num)
+        item_dict["members"] = " + ".join(member_lst)
         ret_list.append(item_dict)
     return json.dumps(ret_list, ensure_ascii=False)

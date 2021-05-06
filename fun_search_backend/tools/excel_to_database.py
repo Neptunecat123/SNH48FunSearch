@@ -90,12 +90,12 @@ def b50_import_to_database(datas):
 
 
 if __name__ == "__main__":
-    # # members info
-    # datas = member_get_datas()
-    # member_import_to_database(datas)
-    # # election info
+    # members info
+    datas = member_get_datas()
+    member_import_to_database(datas)
+    # election info
     #
-    # # b50 info
+    # b50 info
 
     datas = b50_get_datas("7th", "20210116")
     b50_import_to_database(datas)

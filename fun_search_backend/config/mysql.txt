@@ -1,3 +1,28 @@
+CREATE DATABASE snh48;
+
+CREATE TABLE member(
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        gname VARCHAR(25),
+        sname VARCHAR(25),
+        pinyin VARCHAR(25),
+        abbr VARCHAR(10),
+        tname VARCHAR(10),
+        pname VARCHAR(25),
+        nickname VARCHAR(25),
+        join_day VARCHAR(25),
+        height INT,
+        birth_day VARCHAR(25),
+        birth_place VARCHAR(25),
+        speciality TEXT,
+        hobby TEXT,
+        experience TEXT,
+        catch_phrase TEXT,
+        blood_type VARCHAR(10),
+        pocket_id VARCHAR(25),
+        status INT
+)ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
 CREATE TABLE team_info(
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(25),
@@ -6,7 +31,7 @@ CREATE TABLE team_info(
         start_time VARCHAR(50),
         disband_time VARCHAR(50),
         status INT
-)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 CREATE TABLE `election_info`(
         `id` INT AUTO_INCREMENT PRIMARY KEY,
